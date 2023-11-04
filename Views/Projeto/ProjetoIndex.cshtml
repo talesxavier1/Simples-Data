@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Simples_Data.Models.ViewModel.ProjetoViewModel;
+
+<div class="container">
+    <div class="grid-box shadow p-3 mb-5 bg-white rounded">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome Projeto</th>
+                    <th scope="col">Projeto ID</th>
+                    <th scope="col">Banco Desenvolvimento</th>
+                    <th scope="col">Banco Homoloção</th>
+                    <th scope="col">Banco Produção</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var projeto in Model.projetoModels) {
+                    <tr>
+                        <th scope="row">@projeto._id</th>
+                        <th scope="row">@projeto.nomeProjeto</th>
+                        <th scope="row">@projeto.projectID</th>
+                        <th scope="row">@projeto.dataBaseDesenvolvimento</th>
+                        <th scope="row">@projeto.dataBaseHomologacao</th>
+                        <th scope="row">@projeto.dataBaseProducao</th>
+                        <th scope="row">@projeto.status</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+            <ul id="paginacao-container" class="pagination">
+                <li id="pagination_previous" class="page-item"><a class="page-link" href="">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="">Next</a></li>
+              @*   
+                
+                <li id="pagination_next" class="page-item"><a class="page-link" href="">Next</a></li> *@
+              @*   <li class="page-item"><a class="page-link" href="/Projeto/@(Model.currentSkip > 10 ? Model.currentSkip - 10 : 0)/10">Previous</a></li>
+                @{
+                    int skipCount = 0;
+                    @for (int i = 0;i < Model.pageSize;i++) {
+                        <li class="page-item @(Model.page == i? "active":"")"><a class="page-link" href="/Projeto/@skipCount/10">@(i+1)</a></li>
+                        skipCount += 10;
+                    }
+                }
+                <li class="page-item @(Model.count<Model.currentSkip+10?"disabled":"")"><a class="page-link" href="/Projeto/@(Model.currentSkip+10)/10">Next</a></li> *@
+            </ul>
+        </nav>
+    </div>
+ </div>
+<script src="~/js/ProjetoIndex.js" asp-append-version="true"></script>
+<script src="~/js/GridUtils.js"></script>
+<script>
+    GridUtils.criarPaginacao({
+        "container": 'paginacao-container',
+        "paginacaoPreviousId": "pagination_previous",
+        "paginacaoNextId":"s",
+        "count": @Model.count
+    });
+</script>

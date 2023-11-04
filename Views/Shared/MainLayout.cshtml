@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SIMPLES DATA</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/MainLayout.css" asp-append-version="true" />
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body>
+    <header class="container-fluid">
+        header
+    </header>
+    <div id="content_container">
+        <nav class="container nav-area">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/Projeto/0/10">PROJETOS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="content-wraper container-fluid">
+            <div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <footer>
+        footer
+    </footer>
+</body>
+<script src="~/js/site.js" asp-append-version="true"></script>
+</html>
