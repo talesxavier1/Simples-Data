@@ -1,0 +1,41 @@
+﻿.main_container {
+    background-color: #FFFFFF;
+    width: 1600px;
+    height: 900px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 1600px;
+}
+
+.buttons_container {
+    width: 1500px;
+    margin: 5px;
+    display:flex;
+}
+
+.buttons_container > .button_componente {
+    margin: 5px;
+}
+
+.switch_filtrar_container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;    
+}
+
+.grid_container {
+    background-color: brown;
+    width: 1500px;
+    height: 620px;
+    margin: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.dx-datagrid {
+    background-color: #E6E6F5;
+}
+

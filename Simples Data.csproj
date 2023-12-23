@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -15,10 +15,107 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.0.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.4" />
     <PackageReference Include="MongoDB.Driver" Version="2.21.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\DevExtreme\Lib\css\fonts\Roboto-300.woff2" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\css\fonts\Roboto-400.woff2" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\css\fonts\Roboto-500.woff2" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\css\fonts\Roboto-700.woff2" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\css\icons\dxicons.woff2" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\css\icons\dxiconsfluent.woff2" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\css\icons\dxiconsmaterial.woff2" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\angular.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\angular.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\cldr.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\cldr.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\cldr\event.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\cldr\event.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\cldr\supplemental.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\cldr\supplemental.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\cldr\unresolved.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\cldr\unresolved.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx-diagram.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx-diagram.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx-gantt.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx-gantt.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx-quill.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx-quill.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx.all.debug.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx.all.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx.aspnet.mvc.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx.viz.debug.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx.viz.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx.web.debug.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\dx.web.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\exceljs.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\exceljs.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\FileSaver.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\FileSaver.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize\currency.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize\currency.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize\date.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize\date.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize\message.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize\message.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize\number.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\globalize\number.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\jquery.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\jquery.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\jspdf.plugin.autotable.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\jspdf.plugin.autotable.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\jspdf.umd.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\jspdf.umd.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\jszip.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\jszip.min.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\knockout-latest.debug.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\knockout-latest.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.ar.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.ca.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.cs.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.de.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.el.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.en.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.es.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.fa.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.fi.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.fr.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.hu.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.it.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.ja.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.lt.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.lv.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.nb.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.nl.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.pl.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.pt.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.ro.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.ru.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.sl.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.sv.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.tr.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.vi.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.zh-tw.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\localization\dx.messages.zh.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\vectormap-data\africa.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\vectormap-data\canada.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\vectormap-data\eurasia.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\vectormap-data\europe.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\vectormap-data\usa.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\vectormap-data\world.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\vectormap-utils\dx.vectormaputils.debug.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\vectormap-utils\dx.vectormaputils.js" />
+    <None Include="wwwroot\lib\DevExtreme\Lib\js\vectormap-utils\dx.vectormaputils.node.js" />
+    <None Include="wwwroot\Projeto\ProjetoIndex.css" />
+    <None Include="wwwroot\Projeto\ProjetoIndex.js" />
   </ItemGroup>
 
 </Project>
