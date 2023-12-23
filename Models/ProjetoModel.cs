@@ -1,8 +1,11 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace Simples_Data.Models;
 public class ProjetoModel {
 
+    [Key]
     [BsonId]
     public string _id { get; set; }
 
@@ -25,7 +28,7 @@ public class ProjetoModel {
     public ProjetoModelStatusEnum status { get; set; }
 
     [BsonElement("dataInfoModel")]
-    public DataInfoModel dataInfoModel;
+    public DataInfoModel dataInfoModel { get; set; }
 
     public ProjetoModel() {
         this._id = Guid.NewGuid().ToString();

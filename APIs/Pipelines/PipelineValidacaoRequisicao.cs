@@ -11,7 +11,6 @@ namespace Simples_Data.APIs.Pipelines;
 
 public static class PipelineValidacaoRequisicao {
 
-
     public static IApplicationBuilder UsePipelineValidacaoRequisicao(this IApplicationBuilder mainApp) {
 
         mainApp.UseMiddleware<MValidacaoBodyData>();
@@ -35,9 +34,6 @@ public static class PipelineValidacaoRequisicao {
 
         return mainApp;
     }
-
-
-
 }
 
 public class MValidacaoBodyData {
