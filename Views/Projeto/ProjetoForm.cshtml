@@ -1,0 +1,41 @@
+﻿@model Simples_Data.Models.ProjetoModel;
+
+<div class="main_container">
+    <script>
+        const viewBag = @Html.Raw(@ViewBag.jsonResponseBag);
+    </script>
+
+    <form action="/projeto/page" method="post">
+        <div class="mb-3">
+            <label asp-for="_id" class="form-label">ID</label>
+            <input asp-for="_id" type="text" class="form-control" id="_id" aria-describedby="ID">
+        </div>  
+        <div class="mb-3">
+            <label asp-for="nomeProjeto" class="form-label">Nome Projeto</label>
+            <input asp-for="nomeProjeto" type="text" class="form-control" id="nomeProjeto">
+        </div>  
+        <div class="mb-3">
+            <label asp-for="dataBaseDesenvolvimento" class="form-label">Banco DESENV</label>
+            <input asp-for="dataBaseDesenvolvimento" type="text" class="form-control" id="dataBaseDesenvolvimento">
+        </div>
+        <div class="mb-3">
+            <label asp-for="dataBaseHomologacao" class="form-label">Banco HOMOL</label>
+            <input asp-for="dataBaseHomologacao" type="text" class="form-control" id="dataBaseHomologacao">
+        </div>
+        <div class="mb-3">
+            <label asp-for="dataBaseProducao" class="form-label">Banco PROD</label>
+            <input asp-for="dataBaseProducao" type="text" class="form-control" id="dataBaseProducao">
+        </div>
+        <div class="mb-3">
+            <label asp-for="status" class="form-label">Status</label>
+            <select asp-for="status" class="form-select" aria-label="Default select example" id="status">
+                <option value="ATIVO">ATIVO</option>
+                <option value="INATIVO">INATIVO</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script src="~/Projeto/ProjetoForm.js"></script>
+<link href="~/Projeto/ProjetoForm.css" rel="stylesheet" />
