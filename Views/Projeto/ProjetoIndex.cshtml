@@ -1,13 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Projetos";
-   
-}
-
-@model Simples_Data.Models.ViewModel.ProjetoViewModel;
+﻿@{ViewData["Title"] = "Projetos";}
 
 <div class="main_container">
-    
-    <div class="buttons_container">
+    <div class="buttons">
         <div class="button_componente"><div id="btn_adicionar"></div></div>
         <div class="button_componente"><div id="btn_editar"></div></div>
         <div class="button_componente"><div id="btn_excluir"></div></div>
@@ -16,11 +10,9 @@
             <div id="switch_filtrar"></div>
         </div>
    </div>
-
-   <div class="grid_container">
+    <div class="grid_container">
         <div id="gridContainer"></div>
-   </div>
-
+    </div>
 </div>
 
 <script src="~/Projeto/ProjetoIndex.js"></script>
