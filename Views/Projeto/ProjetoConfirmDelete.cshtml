@@ -1,0 +1,19 @@
+﻿@model Simples_Data.Models.ProjetoModel;
+
+<h3>DELETAR PROJETO @Model.nomeProjeto</h3>
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "form" })) {
+    @Html.AntiForgeryToken()
+
+    <div id="btn_confirmar"></div>
+    <div id="btn_voltar"></div>
+
+@*     <div class="form-actions">
+        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+        @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn" })
+    </div> *@
+}
+
+<script src="~/Projeto/ProjetoConfirmDelete.js"></script>
+<link href="~/Projeto/ProjetoConfirmDelete.css" rel="stylesheet" />
