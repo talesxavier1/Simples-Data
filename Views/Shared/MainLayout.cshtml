@@ -20,39 +20,38 @@
 </head>
 
 
-
-
 <body class ="dx-viewport">
-    <header class=""s>
-        header
-    </header>
     <script>
         DevExpress.localization.locale(navigator.language);
     </script>
-    <div id="content_container">
-        <nav class="nav-area">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/Projeto">PROJETOS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="content-wraper">
+    <div class="main">
+        <header>
+            headerss
+        </header>
+        <div class="content">
+            <nav class="nav-area">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/Projeto">PROJETOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="content-wraper">
                 @RenderBody()
+            </div>
         </div>
+
     </div>
-    <footer>
-        footer
-    </footer>
+
 </body>
 <script src="~/js/site.js" asp-append-version="true"></script>
 </html>
