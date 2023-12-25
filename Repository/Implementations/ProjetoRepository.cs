@@ -12,7 +12,7 @@ public class ProjetoRepository : IGenericRepository<ProjetoModel> {
         _projetosCollection = projetosCollection;
     }
 
-    public async Task<bool> Existe(string id) {
+    public async Task<bool> Exist(string id) {
         var filter = Builders<ProjetoModel>.Filter.Eq(DOC => DOC._id, id);
         var result = await _projetosCollection.CountDocumentsAsync(filter);
         if (result > 0) { return true; }
@@ -38,7 +38,7 @@ public class ProjetoRepository : IGenericRepository<ProjetoModel> {
     }
 
     public async Task<bool> tryAdd(ProjetoModel entity) {
-        if ((await Existe(entity._id))) {
+        if ((await Exist(entity._id))) {
             return false;
         }
 
