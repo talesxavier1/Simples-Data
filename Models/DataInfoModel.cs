@@ -9,7 +9,7 @@ public class DataInfoModel {
     public Boolean active { get; set; }
 
     [BsonElement("updateDetails")]
-    public List<UpdateDetail>? updateDetails { get; set; }
+    public List<UpdateDetail> updateDetails { get; set; }
 
 }
 
@@ -27,6 +27,10 @@ public class UpdateDetail {
 
     [BsonElement("actionTrackID")]
     public string actionTrackID { get; set; }
+
+    [BsonElement("dataTimeAction")]
+    public DateTime dataTimeAction { get; set; }
+
 }
 
 public enum UpdateDetailsActionEnum {
