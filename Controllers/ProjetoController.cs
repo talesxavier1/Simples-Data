@@ -21,25 +21,24 @@ public class ProjetoController : Controller {
         return View("ProjetoIndex");
     }
 
-    [Route("Projeto/Page")]
+    [Route("Projeto/Page/{id?}")]
     [HttpGet]
-    public IActionResult Page() {
+    async public Task<IActionResult> Page(string? id) {
         var responseBag = new ViewActionResponse<ProjetoModel>();
-        responseBag.action = ViewActionResponseActionEnum.GET;
-        responseBag.status = ViewActionResponseStatusEnum.OK;
-        responseBag.content = new ProjetoModel();
 
-        ViewBag.jsonResponseBag = JsonConvert.SerializeObject(responseBag);
-        ViewBag.responseBag = responseBag;
+        if (id == null) {
+            responseBag.action = ViewActionResponseActionEnum.GET;
+            responseBag.status = ViewActionResponseStatusEnum.OK;
+            responseBag.content = new ProjetoModel();
 
-        return View("ProjetoForm", responseBag.content);
-    }
+            ViewBag.jsonResponseBag = JsonConvert.SerializeObject(responseBag);
+            ViewBag.responseBag = responseBag;
 
-    [Route("Projeto/Page/{id}")]
-    [HttpGet]
-    async public Task<IActionResult> Page(string id) {
+            return View("ProjetoForm", responseBag.content);
+        }
+
         var result = await new ProjetoRepository(_projetoCollection).GetById(id);
-        var responseBag = new ViewActionResponse<ProjetoModel>();
+
         responseBag.action = ViewActionResponseActionEnum.GET;
 
         if (result != null) {
