@@ -9,7 +9,7 @@ $('#btn_adicionar').dxButton({
     type: 'success',
     width: 120,
     onClick() {
-
+        window.location.replace(`${window.location.origin}/projeto/page`)
     }
 });
 
@@ -44,6 +44,7 @@ const GRID = $('#gridContainer').dxDataGrid({
             key: '_id',
         }
     },
+    width: '100%',
     filterRow: {
         visible: false,
         applyFilter: 'auto',
