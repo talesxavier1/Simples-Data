@@ -17,12 +17,11 @@ public class OdataProjetoController : ODataController {
 
     [EnableQuery]
     [HttpGet("ProjetoModels")]
-    async public Task<IQueryable<ProjetoModel>> Get() {
+    async public Task<IEnumerable<ProjetoModel>> Get() {
 
         var filter = Builders<ProjetoModel>.Filter.Eq(DOC => DOC.dataInfoModel.active,true);
         var cursor = await projetoCollection.FindAsync(filter);
-
-        return cursor.ToList().AsQueryable();
+        return await cursor.ToListAsync();
     }
 
 }
