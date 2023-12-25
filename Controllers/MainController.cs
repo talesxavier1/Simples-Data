@@ -12,7 +12,6 @@ public class MainController : Controller
         _logger = logger;
     }
 
-
     public IActionResult Index()
     {
         return View();
