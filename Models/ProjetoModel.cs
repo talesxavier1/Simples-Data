@@ -1,5 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 
 namespace Simples_Data.Models;
@@ -12,9 +14,6 @@ public class ProjetoModel {
     [BsonElement("nomeProjeto")]
     public string nomeProjeto { get; set; }
 
-    [BsonElement("projectID")]
-    public string projectID { get; set; }
-
     [BsonElement("dataBaseDesenvolvimento")]
     public string dataBaseDesenvolvimento { get; set; }
 
@@ -25,15 +24,18 @@ public class ProjetoModel {
     public string dataBaseProducao { get; set; }
 
     [BsonElement("status")]
+    [BsonRepresentation(BsonType.String)]
+    [JsonConverter(typeof(StringEnumConverter))]
     public ProjetoModelStatusEnum status { get; set; }
 
     [BsonElement("dataInfoModel")]
-    public DataInfoModel dataInfoModel { get; set; }
+    public DataInfoModel dataInfoModel;
 
     public ProjetoModel() {
         this._id = Guid.NewGuid().ToString();
     }
 }
+
 
 public enum ProjetoModelStatusEnum {
     ATIVO,
