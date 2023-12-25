@@ -120,6 +120,7 @@ public class ProjetoController : Controller {
 
     [Route("Projeto/Delete/{id}")]
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<ActionResult> DeleteAction(string id) {
         ProjetoRepository projetoRepository = new(_projetoCollection);
         var responseBag = new ViewActionResponse<ProjetoModel>();
