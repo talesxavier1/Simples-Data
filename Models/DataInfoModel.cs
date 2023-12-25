@@ -11,8 +11,11 @@ public class DataInfoModel {
     [BsonElement("active")]
     public Boolean active { get; set; }
 
+    [BsonElement("createDate")]
+    public DateTime createDate { get; set; }
+
     [BsonElement("updateDetails")]
-    public List<UpdateDetail> updateDetails { get; set; }
+    public List<UpdateDetail> updateDetails;
 
 }
 

@@ -16,12 +16,9 @@ public static class OdataEDMConfig {
 
     }
 
-
     private static IEdmModel GetEdmModelV1() {
         var modelBuilder = new ODataConventionModelBuilder();
-
         modelBuilder.EntitySet<ProjetoModel>("ProjetoModels");
-
         return modelBuilder.GetEdmModel();
     }
 }

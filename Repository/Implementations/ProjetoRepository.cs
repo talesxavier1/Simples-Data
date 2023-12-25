@@ -21,13 +21,15 @@ public class ProjetoRepository : IGenericRepository<ProjetoModel> {
 
     public async Task<IEnumerable<ProjetoModel>> GetAll() {
         var filter = Builders<ProjetoModel>.Filter.Eq(DOC => DOC.dataInfoModel.active, true);
-        var cursor = await _projetosCollection.FindAsync(filter);
+        var option = new FindOptions<ProjetoModel>() {
+            Sort = Builders<ProjetoModel>.Sort.Ascending("dataInfoModel.createDate")
+        };
+        var cursor = await _projetosCollection.FindAsync(filter, option);
         return await cursor.ToListAsync();
     }
 
     public async Task<ProjetoModel> GetById(string id) {
 
-        var filter = Builders<ProjetoModel>.Filter.Eq(DOC => DOC.dataInfoModel.active, true);
         var filters = new List<FilterDefinition<ProjetoModel>>() {
             Builders<ProjetoModel>.Filter.Eq(DOC => DOC.dataInfoModel.active,true),
             Builders<ProjetoModel>.Filter.Eq(DOC => DOC._id, id)
@@ -45,6 +47,7 @@ public class ProjetoRepository : IGenericRepository<ProjetoModel> {
         try {
             entity.dataInfoModel = new DataInfoModel() {
                 active = true,
+                createDate = DateTime.UtcNow.AddHours(-3),
                 updateDetails = new List<UpdateDetail>() {
                     new UpdateDetail() {
                         actionTrackID = "SEM TrackID FALTA IMPLEMENTAR",
@@ -65,9 +68,17 @@ public class ProjetoRepository : IGenericRepository<ProjetoModel> {
 
     public async Task<bool> tryDelete(string id) {
         var filter = Builders<ProjetoModel>.Filter.Eq(DOC => DOC._id, id);
-        var updateDefinition = Builders<ProjetoModel>.Update.Set("dataInfoModel.active", false);
+        var updateDefinitions = new List<UpdateDefinition<ProjetoModel>>() {
+            Builders<ProjetoModel>.Update.Set(DOC=> DOC.dataInfoModel.active, false),
+            Builders<ProjetoModel>.Update.Push(DOC => DOC.dataInfoModel.updateDetails,new UpdateDetail() {
+                actionTrackID= "NÃO TEM FALTA IMPLEMENTAR",
+                dataTimeAction= DateTime.UtcNow.AddHours(-3),
+                updateDetailsActionEnum= UpdateDetailsActionEnum.DELETE,
+                userID = "NÃO TEM FALTA IMPLEMENTAR",
+                userName = "NÃO TEM FALTA IMPLEMENTAR"
+            })};
 
-        var result = await _projetosCollection.UpdateOneAsync(filter, updateDefinition);
+        var result = await _projetosCollection.UpdateOneAsync(filter, Builders<ProjetoModel>.Update.Combine(updateDefinitions));
 
         if (result.MatchedCount > 0) {
             return true;
@@ -84,20 +95,19 @@ public class ProjetoRepository : IGenericRepository<ProjetoModel> {
         }
 
         PropertyInfo[] propertiesInfo = entity.GetType().GetProperties();
+        List<UpdateDefinition<ProjetoModel>> listUpdateDefinitions = new();
+        foreach (PropertyInfo propertyInfo in propertiesInfo) {
+            if (propertyInfo.Name == "dataInfoModel") { continue; }
+            listUpdateDefinitions.Add(Builders<ProjetoModel>.Update.Set(propertyInfo.Name, propertyInfo.GetValue(entity)));
+        }
 
-        List<UpdateDefinition<ProjetoModel>> listUpdateDefinitions = propertiesInfo.Select((PropertyInfo VALUE) => {
-            return Builders<ProjetoModel>.Update.Set(VALUE.Name, VALUE.GetValue(entity));
-        }).ToList();
-
-        currentDoc.dataInfoModel.updateDetails.Add(new UpdateDetail() {
-            actionTrackID = "SEM TrackID FALTA IMPLEMENTAR",
+        listUpdateDefinitions.Add(Builders<ProjetoModel>.Update.Push(DOC => DOC.dataInfoModel.updateDetails, new UpdateDetail() {
+            actionTrackID = "NÃO TEM FALTA IMPLEMENTAR",
+            dataTimeAction = DateTime.UtcNow.AddHours(-3),
             updateDetailsActionEnum = UpdateDetailsActionEnum.UPDATE,
-            userID = "SEM ID FALTA IMPLAMENTAR",
-            userName = "SEM NOME FALTA IMPLAMENTAR",
-            dataTimeAction = DateTime.UtcNow.AddHours(-3)
-        });
-        listUpdateDefinitions.Add(Builders<ProjetoModel>.Update.Set("dataInfoModel", currentDoc.dataInfoModel));
-
+            userID = "NÃO TEM FALTA IMPLEMENTAR",
+            userName = "NÃO TEM FALTA IMPLEMENTAR"
+        }));
 
         var result = await _projetosCollection.UpdateOneAsync(filterCurrentDoc, Builders<ProjetoModel>.Update.Combine(listUpdateDefinitions));
 

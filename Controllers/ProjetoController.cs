@@ -21,25 +21,24 @@ public class ProjetoController : Controller {
         return View("ProjetoIndex");
     }
 
-    [Route("Projeto/Page")]
+    [Route("Projeto/Page/{id?}")]
     [HttpGet]
-    public IActionResult Page() {
+    async public Task<IActionResult> Page(string? id) {
         var responseBag = new ViewActionResponse<ProjetoModel>();
-        responseBag.action = ViewActionResponseActionEnum.GET;
-        responseBag.status = ViewActionResponseStatusEnum.OK;
-        responseBag.content = new ProjetoModel();
 
-        ViewBag.jsonResponseBag = JsonConvert.SerializeObject(responseBag);
-        ViewBag.responseBag = responseBag;
+        if (id == null) {
+            responseBag.action = ViewActionResponseActionEnum.GET;
+            responseBag.status = ViewActionResponseStatusEnum.OK;
+            responseBag.content = new ProjetoModel();
 
-        return View("ProjetoForm", responseBag.content);
-    }
+            ViewBag.jsonResponseBag = JsonConvert.SerializeObject(responseBag);
+            ViewBag.responseBag = responseBag;
 
-    [Route("Projeto/Page/{id}")]
-    [HttpGet]
-    async public Task<IActionResult> Page(string id) {
+            return View("ProjetoForm", responseBag.content);
+        }
+
         var result = await new ProjetoRepository(_projetoCollection).GetById(id);
-        var responseBag = new ViewActionResponse<ProjetoModel>();
+
         responseBag.action = ViewActionResponseActionEnum.GET;
 
         if (result != null) {
@@ -60,6 +59,7 @@ public class ProjetoController : Controller {
 
     [Route("Projeto/Page")]
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> PagePost(ProjetoModel projeto) {
         ProjetoRepository projetoRepository = new(_projetoCollection);
         var responseBag = new ViewActionResponse<ProjetoModel>();
@@ -92,5 +92,51 @@ public class ProjetoController : Controller {
         ViewBag.responseBag = responseBag;
 
         return View("ProjetoForm", responseBag.content);
+    }
+
+    [Route("Projeto/Delete/{id}")]
+    [HttpGet]
+    public async Task<ActionResult> Delete(string id) {
+        ProjetoRepository projetoRepository = new(_projetoCollection);
+        var responseBag = new ViewActionResponse<ProjetoModel>();
+
+        var result = await projetoRepository.GetById(id);
+        if (result == null) {
+            responseBag.status = ViewActionResponseStatusEnum.NOK;
+            responseBag.action = ViewActionResponseActionEnum.GET;
+            responseBag.message = "Não foi possível encontrar conteúdo";
+
+            ViewBag.jsonResponseBag = JsonConvert.SerializeObject(responseBag);
+            return View("ProjetoIndex");
+        }
+        responseBag.status = ViewActionResponseStatusEnum.OK;
+        responseBag.action = ViewActionResponseActionEnum.GET;
+        responseBag.message = string.Empty;
+        responseBag.content = result;
+
+        ViewBag.jsonResponseBag = JsonConvert.SerializeObject(responseBag);
+        return View("ProjetoConfirmDelete", result);
+    }
+
+    [Route("Projeto/Delete/{id}")]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> DeleteAction(string id) {
+        ProjetoRepository projetoRepository = new(_projetoCollection);
+        var responseBag = new ViewActionResponse<ProjetoModel>();
+
+        var result = await projetoRepository.tryDelete(id);
+        if (!result) {
+            responseBag.status = ViewActionResponseStatusEnum.NOK;
+            responseBag.action = ViewActionResponseActionEnum.DELETE;
+            responseBag.message = "Não foi possível deletar o conteúdo.";
+        }
+
+        responseBag.status = ViewActionResponseStatusEnum.OK;
+        responseBag.action = ViewActionResponseActionEnum.DELETE;
+        responseBag.message = "Registro deletado";
+
+        ViewBag.jsonResponseBag = JsonConvert.SerializeObject(responseBag);
+        return View("ProjetoIndex");
     }
 }

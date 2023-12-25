@@ -29,7 +29,7 @@ public class ProjetoModel {
     public ProjetoModelStatusEnum status { get; set; }
 
     [BsonElement("dataInfoModel")]
-    public DataInfoModel dataInfoModel;
+    public DataInfoModel dataInfoModel { get; set; }
 
     public ProjetoModel() {
         this._id = Guid.NewGuid().ToString();
