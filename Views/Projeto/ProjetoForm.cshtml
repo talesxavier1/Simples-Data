@@ -6,8 +6,8 @@
     </script>
 
     <form action="/projeto/page" method="post">
-        @Html.AntiForgeryToken()
 
+        @Html.AntiForgeryToken()
         <div class="mb-3">
             <label asp-for="_id" class="form-label">ID</label>
             <input asp-for="_id" type="text" class="form-control" id="_id" aria-describedby="ID">
